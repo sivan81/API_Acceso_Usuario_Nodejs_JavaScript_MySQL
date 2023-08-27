@@ -41,6 +41,44 @@ app.post('/login', (req, res) => {
 });
 
 
+// Ruta para recuperar contraseña
+app.post('/forgot-password', (req, res) => {
+  const { email } = req.body;
+  db.query('SELECT clave FROM usuarios WHERE email = ?', [email], (err, result) => {
+    if (err) {
+      res.status(500).json({ message: 'Error en el servidor' });
+    } else if (result.length === 1) {
+      const claveUsuario = result[0].clave;
+
+      const transporter = nodemailer.createTransport({
+        service: 'Gmail',
+        auth: {
+          user: 'tu_correo@gmail.com', // Cambia esto por tu correo
+          pass: 'tu_contraseña' // Cambia esto por tu contraseña
+        }
+      });
+
+      const mailOptions = {
+        from: 'tu_correo@gmail.com', // Cambia esto por tu correo
+        to: email,
+        subject: 'Recuperación de contraseña',
+        text: `Tu contraseña es: ${claveUsuario}`
+      };
+
+      transporter.sendMail(mailOptions, error => {
+        if (error) {
+          res.status(500).json({ message: 'Error en el servidor' });
+        } else {
+          res.status(200).json({ message: 'Correo enviado con éxito' });
+        }
+      });
+    } else {
+      res.status(404).json({ message: 'El email introducido no está registrado' });
+    }
+  });
+});
+
+
 app.listen(PORT, () => {
   console.log(`Servidor escuchando en el puerto ${PORT}`);
 });
