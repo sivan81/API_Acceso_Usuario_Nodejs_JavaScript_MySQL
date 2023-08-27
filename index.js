@@ -41,7 +41,7 @@ app.post('/login', (req, res) => {
 });
 
 
-// Ruta para recuperar contraseña
+// Ruta para recuperar contraseña // AÚN NO ESTÁ FUNCIONAL
 app.post('/forgot-password', (req, res) => {
   const { email } = req.body;
   db.query('SELECT clave FROM usuarios WHERE email = ?', [email], (err, result) => {
