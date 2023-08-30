@@ -57,13 +57,13 @@ app.post('/forgot-password', (req, res) => {
       const transporter = nodemailer.createTransport({
         service: 'Gmail',
         auth: {
-          user: 'ivandevelop81@gmail.com', // Cambia esto por tu correo
-          pass: 'yfcdyjjsgotzveyd' // Cambia esto por tu contraseña
+          user: 'ivandevelop81@gmail.com', // email desde el que envia
+          pass: 'yfcdyjjsgotzveyd' // Contraseña de aplicación generada porque la contraseña del email daba problemas
         }
       });
 
       const mailOptions = {
-        from: 'ivandevelop81@gmail.com', // Cambia esto por tu correo
+        from: 'ivandevelop81@gmail.com', // envía el email con la clave
         to: email,
         subject: 'Recuperación de contraseña',
         text: `Tu contraseña es: ${claveUsuario}`
@@ -72,7 +72,7 @@ app.post('/forgot-password', (req, res) => {
       transporter.sendMail(mailOptions, error => {
         if (error) {
           console.error('Error al enviar el correo electrónico:', error); // Registro de error
-          res.status(500).json({ message: 'Error en el servidor2' });
+          res.status(500).json({ message: 'Error en el servidor' });
         } else {
           console.log('Correo electrónico enviado con éxito'); // Registro de depuración
           res.status(200).json({ message: 'Correo enviado con éxito' });
