@@ -58,7 +58,7 @@ app.post('/forgot-password', (req, res) => {
         service: 'Gmail',
         auth: {
           user: 'ivandevelop81@gmail.com', // Cambia esto por tu correo
-          pass: 'sivan81%' // Cambia esto por tu contraseña
+          pass: 'yfcdyjjsgotzveyd' // Cambia esto por tu contraseña
         }
       });
 
