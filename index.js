@@ -41,7 +41,7 @@ app.post('/login', (req, res) => {
 });
 
 
-// Ruta para recuperar contraseña // AÚN NO ESTÁ FUNCIONAL
+// Ruta para recuperar contraseña
 app.post('/forgot-password', (req, res) => {
   const { email } = req.body;
   db.query('SELECT clave FROM usuarios WHERE email = ?', [email], (err, result) => {
@@ -53,13 +53,13 @@ app.post('/forgot-password', (req, res) => {
       const transporter = nodemailer.createTransport({
         service: 'Gmail',
         auth: {
-          user: 'tu_correo@gmail.com', // Cambia esto por tu correo
-          pass: 'tu_contraseña' // Cambia esto por tu contraseña
+          user: 'ivandevelop81@gmail.com', // Cambia esto por tu correo
+          pass: 'sivan81%' // Cambia esto por tu contraseña
         }
       });
 
       const mailOptions = {
-        from: 'tu_correo@gmail.com', // Cambia esto por tu correo
+        from: 'ivandevelop81@gmail.com', // Cambia esto por tu correo
         to: email,
         subject: 'Recuperación de contraseña',
         text: `Tu contraseña es: ${claveUsuario}`
