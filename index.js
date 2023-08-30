@@ -30,7 +30,7 @@ app.post('/login', (req, res) => {
   const { email, clave } = req.body;
   db.query('SELECT * FROM usuarios WHERE email = ? AND clave = ?', [email, clave], (err, result) => {
     if (err) {
-      res.status(500).json({ message: 'Error en el servidor' });
+      res.status(500).json({ message: 'Error en el servidor API login' });
     } else if (result.length === 1) {
       //res.sendFile(__dirname + '/index.html'); // Enviar archivo index.html si las credenciales son válidas
       res.status(401).json({ message: 'Los datos introducidos son correctos' });
@@ -67,7 +67,7 @@ app.post('/forgot-password', (req, res) => {
 
       transporter.sendMail(mailOptions, error => {
         if (error) {
-          res.status(500).json({ message: 'Error en el servidor' });
+          res.status(500).json({ message: 'Error en el servidor2' });
         } else {
           res.status(200).json({ message: 'Correo enviado con éxito' });
         }
