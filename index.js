@@ -46,7 +46,7 @@ app.post('/forgot-password', (req, res) => {
   const { email } = req.body;
   db.query('SELECT clave FROM usuarios WHERE email = ?', [email], (err, result) => {
     if (err) {
-      res.status(500).json({ message: 'Error en el servidor' });
+      res.status(500).json({ message: 'No se estableció la conexión' });
     } else if (result.length === 1) {
       const claveUsuario = result[0].clave;
 
