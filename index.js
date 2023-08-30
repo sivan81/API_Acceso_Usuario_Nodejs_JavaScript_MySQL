@@ -44,11 +44,15 @@ app.post('/login', (req, res) => {
 // Ruta para recuperar contraseña
 app.post('/forgot-password', (req, res) => {
   const { email } = req.body;
+  console.log('Recibido email:', email); // Registro de depuración
+
   db.query('SELECT clave FROM usuarios WHERE email = ?', [email], (err, result) => {
     if (err) {
+      console.error('Error en la consulta SQL:', err); // Registro de error
       res.status(500).json({ message: 'No se estableció la conexión' });
     } else if (result.length === 1) {
       const claveUsuario = result[0].clave;
+      console.log('Clave encontrada:', claveUsuario); // Registro de depuración
 
       const transporter = nodemailer.createTransport({
         service: 'Gmail',
@@ -67,12 +71,15 @@ app.post('/forgot-password', (req, res) => {
 
       transporter.sendMail(mailOptions, error => {
         if (error) {
+          console.error('Error al enviar el correo electrónico:', error); // Registro de error
           res.status(500).json({ message: 'Error en el servidor2' });
         } else {
+          console.log('Correo electrónico enviado con éxito'); // Registro de depuración
           res.status(200).json({ message: 'Correo enviado con éxito' });
         }
       });
     } else {
+      console.log('Email no registrado:', email); // Registro de depuración
       res.status(404).json({ message: 'El email introducido no está registrado' });
     }
   });
