@@ -1,21 +1,21 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const mysql = require('mysql');
-const nodemailer = require('nodemailer');
+import express from 'express';
+import mysql from 'mysql';
+import nodemailer from 'nodemailer';
+import { config } from './config.js';
 
 const app = express();
-const PORT = process.env.PORT || 3000 
+const PORT = config.PORT
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 
 // Configuración de la conexión a la base de datos en servidor
 const db = mysql.createConnection({
-  host: 'www.cursotesting.com.ar',
-  user: 'testing3',
-  password: 'institutoweb',
-  database: 'veterinaria'
+  host: config.DB_HOST,
+  user: config.DB_USER,
+  password: config.DB_PASS,
+  database: config.DB_DATABASE
 });
 
 /*
@@ -68,13 +68,13 @@ app.post('/forgot-password', (req, res) => {
       const transporter = nodemailer.createTransport({
         service: 'Gmail',
         auth: {
-          user: 'ivandevelop81@gmail.com', // email desde el que envia
-          pass: 'yfcdyjjsgotzveyd' // Contraseña de aplicación generada porque la contraseña del email daba problemas
+          user: config.EMAIL_SEND, // email desde el que envia
+          pass: config.PASS_APP_EMAIL // Contraseña de aplicación generada porque la contraseña del email daba problemas
         }
       });
 
       const mailOptions = {
-        from: 'ivandevelop81@gmail.com', // envía el email con la clave
+        from: config.EMAIL_SEND, // envía el email con la clave
         to: email,
         subject: 'Recuperación de contraseña',
         text: `Tu contraseña es: ${claveUsuario}`
