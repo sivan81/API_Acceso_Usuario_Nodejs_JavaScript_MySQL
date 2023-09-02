@@ -43,7 +43,7 @@ app.post('/login', (req, res) => {
     if (err) {
       res.status(500).json({ message: 'Error en el servidor API login' });
     } else if (result.length === 1) {
-      //res.sendFile(__dirname + '/index.html'); // Enviar archivo index.html si las credenciales son válidas
+      //res.sendFile(__dirname + '/index.html'); // Enviar archivo index.html si las credenciales son validas
       res.json({ message: 'Los datos introducidos son correctos' });
     } else {
       res.status(401).json({ message: 'Los datos introducidos no son correctos' });
