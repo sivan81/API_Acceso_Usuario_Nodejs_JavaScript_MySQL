@@ -9,7 +9,17 @@ const PORT = 3000;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// Configuración de la conexión a la base de datos
+/*
+// Configuración de la conexión a la base de datos en servidor
+const db = mysql.createConnection({
+  host: 'www.cursotesting.com.ar',
+  user: 'testing3',
+  password: 'institutoweb',
+  database: 'veterinaria'
+});
+*/
+
+// Configuración de la conexión a la base de datos en local
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
