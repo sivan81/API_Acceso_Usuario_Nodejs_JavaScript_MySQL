@@ -9,7 +9,7 @@ const PORT = 3000;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-/*
+
 // Configuración de la conexión a la base de datos en servidor
 const db = mysql.createConnection({
   host: 'www.cursotesting.com.ar',
@@ -17,8 +17,8 @@ const db = mysql.createConnection({
   password: 'institutoweb',
   database: 'veterinaria'
 });
-*/
 
+/*
 // Configuración de la conexión a la base de datos en local
 const db = mysql.createConnection({
   host: 'localhost',
@@ -26,6 +26,7 @@ const db = mysql.createConnection({
   password: '',
   database: 'veterinaria'
 });
+*/
 
 db.connect(err => {
   if (err) {
