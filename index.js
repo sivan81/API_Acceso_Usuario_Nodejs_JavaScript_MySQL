@@ -4,7 +4,7 @@ import nodemailer from 'nodemailer';
 import { config } from './config.js';
 
 const app = express();
-const PORT = config.PORT
+const PORT = process.env.PORT || config.PORT
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
