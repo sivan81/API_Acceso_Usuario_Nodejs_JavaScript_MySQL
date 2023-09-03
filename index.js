@@ -1,4 +1,3 @@
-require('dotenv').config()
 import express from 'express';
 import mysql from 'mysql';
 import nodemailer from 'nodemailer';
