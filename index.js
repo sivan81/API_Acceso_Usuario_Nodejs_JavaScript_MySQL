@@ -1,10 +1,11 @@
+require('dotenv').config()
 import express from 'express';
 import mysql from 'mysql';
 import nodemailer from 'nodemailer';
 import { config } from './config.js';
 
 const app = express();
-const PORT = process.env.PORT || config.PORT
+const PORT = config.PORT
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
