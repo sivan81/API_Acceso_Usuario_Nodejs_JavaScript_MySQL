@@ -18,15 +18,6 @@ const db = mysql.createConnection({
   database: config.DB_DATABASE
 });
 
-/*
-// Configuración de la conexión a la base de datos en local
-const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'veterinaria'
-});
-*/
 
 db.connect(err => {
   if (err) {
